@@ -5,6 +5,10 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="bower.json" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.1.1" />

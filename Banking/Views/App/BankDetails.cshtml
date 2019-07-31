@@ -1,70 +1,70 @@
 ﻿@model IEnumerable<Banking.Models.BankDetail>
 @{
-    ViewData["Title"] = "BankDetails";
+    ViewData["Title"] = "Bank Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Bank Details</h1>
 
-<div class="row">
+<div class="row" ng-app="app-bankDetails">
     <div class="col-sm-12" style="padding:0px">
-        <hr />
-        <table id="bankdetailTable" class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>EffectiveDate</th>
-                    <th>TransactionCode </th>
-                    <th class="text-center">TransactionAmount</th>
-                    <th>TransactionDate</th>
-                    <th>TransactionTime</th>
-                    <th>DrCrIndicator</th>
-                    <th>StandardBank</th>
-                    <th>BranchCode</th>
-                    <th>ReferenceNumber</th>
-                    <th>AccountNumber</th>
-                    <th>Identifier </th>
 
-                </tr>
-            </thead>
-
-            <tfoot class="thead-dark">
-                <tr>
-                    <th>EffectiveDate</th>
-                    <th>TransactionCode </th>
-                    <th class="text-center">TransactionAmount</th>
-                    <th>TransactionDate</th>
-                    <th>TransactionTime</th>
-                    <th>DrCrIndicator</th>
-                    <th>StandardBank</th>
-                    <th>BranchCode</th>
-                    <th>ReferenceNumber</th>
-                    <th>AccountNumber</th>
-                    <th>Identifier </th>
-                </tr>
-            </tfoot>
-            <tbody>
-                @foreach (var item in Model)
-                {
+        <wait-cursor ng-controller="bankDetailsController as vm" class="col-md-6 col-md-offset-3">
+            <div class="text-danger" ng-show="vm.errorMessage">{{ vm.errorMessage }}</div>
+            <wait-cursor display-when="vm.isBusy"></wait-cursor>
+            <hr />
+            <table id="bankdetailTable" class="table table-striped">
+                <thead class="thead-dark">
                     <tr>
-
-                        <td>
-                            @item.EffectiveDate
-                        </td>
-                        <td>@item.TransactionCode</td>
-                        <td> @item.TransactionAmount</td>
-                        <td> @item.TransactionDate</td>
-                        <td>@item.TransactionTime</td>
-                        <td>@item.DrCrIndicator</td>
-                        <td>@item.StandardBank</td>
-                        <td>@item.BranchCode</td>
-                        <td>@item.ReferenceNumber</td>
-                        <td>@item.AccountNumber</td>
-                        <td>@item.Identifier</td>
+                        <th>EffectiveDate</th>
+                        <th>TransactionCode </th>
+                        <th class="text-center">TransactionAmount</th>
+                        <th>TransactionDate</th>
+                        <th>TransactionTime</th>
+                        <th>DrCrIndicator</th>
+                        <th>StandardBank</th>
+                        <th>BranchCode</th>
+                        <th>ReferenceNumber</th>
+                        <th>AccountNumber</th>
+                        <th>Identifier </th>
 
                     </tr>
-                }
+                </thead>
 
-            </tbody>
-        </table>
+                <tfoot class="thead-dark">
+                    <tr>
+                        <th>EffectiveDate</th>
+                        <th>TransactionCode </th>
+                        <th class="text-center">TransactionAmount</th>
+                        <th>TransactionDate</th>
+                        <th>TransactionTime</th>
+                        <th>DrCrIndicator</th>
+                        <th>StandardBank</th>
+                        <th>BranchCode</th>
+                        <th>ReferenceNumber</th>
+                        <th>AccountNumber</th>
+                        <th>Identifier </th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr ng-repeat="bank in vm.bankDetails">
+                        <td>{{bank.effectiveDate | date: 'MM-dd-yyyy'}}</td>
+                        <td>{{bank.transactionCode}}</td>
+                        <td>{{bank.transactionAmount}}</td>
+                        <td>{{bank.transactionDate | date: 'MM-dd-yyyy'}}</td>
+                        <td>{{bank.transactionTime | date: 'MM-dd-yyyy'}}</td>
+                        <td>{{bank.drCrIndicator}}</td>
+                        <td>{{bank.standardBank}}</td>
+                        <td>{{bank.branchCode}}</td>
+                        <td>{{bank.referenceNumber}}</td>
+                        <td>{{bank.accountNumber}}</td>
+                        <td>{{bank.identifier}}</td>
+
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
     </div>
 </div>
 
@@ -72,7 +72,9 @@
 
 @section Scripts{
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
+    <script src="~/bower_components/angular/angular.min.js"></script>
+    <script src="~/js/bankDetailsController.js"></script>
+    <script src="~/js/app-bankDetails.js"></script>
     <script>
         $(document).ready(function () {
             $("#bankdetailTable").DataTable({
