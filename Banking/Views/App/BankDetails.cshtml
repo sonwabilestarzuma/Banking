@@ -22,7 +22,7 @@
                         <th>TransactionDate</th>
                         <th>TransactionTime</th>
                         <th>DrCrIndicator</th>
-                        <th>StandardBank</th>
+                        <th>Name of Bank</th>
                         <th>BranchCode</th>
                         <th>ReferenceNumber</th>
                         <th>AccountNumber</th>
@@ -39,7 +39,7 @@
                         <th>TransactionDate</th>
                         <th>TransactionTime</th>
                         <th>DrCrIndicator</th>
-                        <th>StandardBank</th>
+                        <th>Name of Bank</th>
                         <th>BranchCode</th>
                         <th>ReferenceNumber</th>
                         <th>AccountNumber</th>
@@ -52,7 +52,7 @@
                         <td>{{bank.transactionCode}}</td>
                         <td>{{bank.transactionAmount}}</td>
                         <td>{{bank.transactionDate | date: 'MM-dd-yyyy'}}</td>
-                        <td>{{bank.transactionTime | date: 'MM-dd-yyyy'}}</td>
+                        <td>{{bank.transactionTime | amdFormat: 'HH:mm:ss'}}</td>
                         <td>{{bank.drCrIndicator}}</td>
                         <td>{{bank.standardBank}}</td>
                         <td>{{bank.branchCode}}</td>
